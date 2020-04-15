@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head> 
+	<h:body> 
+	        <h:form>
+	            <p:commandButton value ="Alta" actionListener="#{beanPersona.preaparaPersona()}" icon="new-icon" oncomplete="PF('dialogNuevaPer').show();" update=":nuevoFrm"/> 
+	        
+	        </h:form>
+	
+	
+	        <h:form id="frmLstPer">
+	              <p:dataTable id="lstPersona" var="p" value="#{beanPersona.listPersona}"> 
+	                 <p:column headerText="Id"> 
+	                    <p:outputLabel value="#{p.id}"/>
+	                 
+	                 </p:column>
+	                 <p:column headerText="Nombre"> 
+	                    <p:outputLabel value="#{p.nombre}"/>
+	                 </p:column>
+	                 <p:column headerText="Apellido"> 
+	                    <p:outputLabel value="#{p.apellido}"/>
+	                 </p:column>
+	                 
+	                 <p:column style="width:5%">
+		                 <p:commandButton id="btnUpdatePer" oncomplete="PF('dialogModificarPer').show();" icon="icon-edit" update=":formModificarPer" title="Actualizar">
+		                 <f:setPropertyActionListener  target="#{beanPersona.persona}" value="#{p}"/>    
+		                 </p:commandButton>
+	                 </p:column>                                                                                                  
+	             
+		              <p:column style="width:5%">
+		                 <p:commandButton id="btnDeletePer" oncomplete="PF('dialogEliminarPer').show();" icon="icon-delete" update=":formEliminarPer" title="Elimina"> 
+		                 <f:setPropertyActionListener  target="#{beanPersona.persona}" value="#{p}"/> 
+		                 </p:commandButton>
+		             </p:column> 
+	              
+	              
+	              </p:dataTable>
+	        
+	        </h:form> 
+	        
+	        <h:form id="nuevoFrm"> 
+	           <p:dialog  id="dialogNuevo" widgetVar="dialogNuevaPer" resizable="false" showEffect="explode" hideEffect="explode" modal="true">
+	           <p:panelGrid columns="2" style="margin: 0:auto">  
+	              <p:outputLabel value="Nombre"/>
+	              <p:inputText value="#{beanPersona.persona.nombre}"/>
+	              
+	              <p:outputLabel value="Apellido"/>
+	              <p:inputText value="#{beanPersona.persona.apellido}"/>
+	           </p:panelGrid>
+	            <p:commandButton value="Guardar" actionListener="#{beanPersona.registrarPersona()}"  update=":frmLstPer:lstPersona" icon="icon-save" oncomplete="PF('dialogNuevaPer').hide();"/>
+	            <p:commandButton value="Cancelar"  oncomplete="PF('dialogNuevaPer').hide();"/>
+	           </p:dialog>
+	        </h:form> 
+	        
+	        <!-- MODIFICAR CLIENTE -->
+	    <h:form id="formModificarPer">
+	     <p:dialog id="dlgModificarPer" widgetVar="dialogModificarPer" resizable="false" showEffect="explode" hideEffect="explode" modal="true">    
+	         <p:panelGrid columns="2" style="margin:0 auto;">
+	                <p:outputLabel value="Nombres"/>
+	                <p:inputText value="#{beanPersona.persona.nombre}"/>
+	                
+	                <p:outputLabel value="Apellido"/>
+	                <p:inputText value="#{beanPersona.persona.apellido}"/>
+	         
+	         </p:panelGrid>
+	         
+	         <p:commandButton value="Guardar" actionListener="#{beanPersona.actualizarPersona()}" icon="icon-save" update=":frmLstPer:lstPersona" oncomplete="PF('dialogModificarPer').hide();"/>
+	         
+	         <p:commandButton value="Cancelar" oncomplete="PF('dialogModificarPer').hide();" icon="icon-cancel"/>  
+	      </p:dialog>   
+	   </h:form> 
+	   
+	   
+	    <h:form id="formEliminarPer">
+	   
+	      
+	     <p:confirmDialog id="dlgEliminarPersona" message="Eliminar registro?" showEffect="fade" hideEffect="explode" header="Eliminar persona" severity="alert" widgetVar="dialogEliminarPer">   
+	                   
+	         <p:commandButton value="Aceptar" actionListener="#{beanPersona.eliminarPersona()}" update=":frmLstPer:lstPersona" icon="icon-check" oncomplete="PF('dialogEliminarPer').hide();"/>
+	         
+	         <p:commandButton value="Cancelar" oncomplete="PF('dialogEliminarCliente').hide();" icon="icon-cancel"/>  
+	      </p:confirmDialog>  
+	      
+	   </h:form>
+	        	
+	</h:body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+    </h:head>
+ 
+    <h:body> 
+    
+             <h:form> 
+                   <p:commandButton value="Alta"  actionListener="#{beanPersona.preaparaPersona()}"
+                                                        icon="icon-new" oncomplete="PF('dialogNuevo').show();" update=":frmNuevo"/>
+             </h:form>
+    
+                  <h:form id ="frmLstPeople"> 
+                          <p:dataTable   id ="lstPeople" var="item" value="#{beanPersona.listPersona}">
+                                <p:column  headerText="id"> 
+                                     <p:outputLabel  value="#{item.id}"/> 
+                                </p:column>
+                                
+                                 <p:column  headerText="Nombre"> 
+                                     <p:outputLabel  value="#{item.nombre}"/> 
+                                </p:column>
+                                
+                                <p:column  headerText="Apellido"> 
+                                     <p:outputLabel  value="#{item.apellido}"/> 
+                                </p:column>
+                                
+				              <p:column headerText="Edicion" style="width:40px;">
+								<p:commandButton id="edita" icon="icon-edit" oncomplete="PF('dialogModificar').show();" update=":frmModificar">
+									<f:setPropertyActionListener target="#{beanPersona.persona}" value="#{item}" />
+								</p:commandButton>
+							</p:column> 
+							 <p:column headerText="Eliminar" style="width:40px;">
+								<p:commandButton id="elimina" icon="icon-edit" oncomplete="PF('dialogEliminar').show();" update="frmEliminar">
+									<f:setPropertyActionListener target="#{beanPersona.persona}" value="#{item}" />
+								</p:commandButton>
+							</p:column> 
+                          
+                          </p:dataTable>
+                  
+                  </h:form>
+                  
+                   <h:form id ="frmNuevo"> 
+                          <p:dialog  id="dlgNuevo" widgetVar="dialogNuevo" header="Alta persona"  resizable="false" showEffect="explode" hideEffect="explode" modal="true"> 
+                                 <p:panelGrid columns="2" style="margin: 0 auto">
+                                       <p:outputLabel  value="Nombre"/> 
+                                       <p:inputText value="#{beanPersona.persona.nombre}" />
+                                       
+                                       <p:outputLabel  value="Apellido"/> 
+                                       <p:inputText value="#{beanPersona.persona.apellido}" />
+                                 
+                                 </p:panelGrid>
+                                
+                                 <p:commandButton  image="ui-icon-xlsx" value="Guardar" actionListener="#{beanPersona.registrarPersona()}" icon="ui-icon-disk" update=":frmLstPeople:lstPeople" oncomplete="PF('dialogNuevo').hide();"/>
+                                 <p:commandButton  value="Cancelar"  onclick="PF('dialogNuevo').hide();" icon="cancel"/>
+                          </p:dialog> 
+                  
+                  </h:form> 
+                  
+                  	<!-- ####################### FORMULARIO PARA MODIFICAR AUTOR #####################-->
+
+	<h:form id="frmModificar">
+		<p:dialog id="dlgModificar" widgetVar="dialogModificar"
+			header="Editar persona" resizable="false" showEffect="explode"
+			hideEffect="explode" modal="true">
+			<p:panelGrid columns="2" style="margin:  0 auto;">
+				<p:outputLabel value="Nombre" />
+				<p:inputText value="#{beanPersona.persona.nombre}" />
+
+				<p:outputLabel value="Apellido" />
+				<p:inputText value="#{beanPersona.persona.apellido}" />
+
+			</p:panelGrid>
+			<p:commandButton value=" "
+				actionListener="#{beanPersona.actualizarPersona()}" icon="ui-icon-disk"
+				update=":frmLstPeople:lstPeople"
+				oncomplete="PF('dialogModificar').hide();" /> 
+			<p:commandButton value="Cancelar"
+				onclick="PF('dialogModificar').hide();" icon="icon-cancel" />
+		</p:dialog>
+	</h:form> 
+	
+		<!-- ######## FORMULARIO PARA ELIMINAR UN AUTOR###############-->
+	<h:form id="frmEliminar">
+		<p:dialog id="dlgEliminar" widgetVar="dialogEliminar"
+			header="Eliminar persona" resizable="false" showEffect="explode"
+			hideEffect="explode" modal="true">
+			<h:outputText value=" " />
+			<p:commandButton value=" " icon="ui-icon-trash"
+				actionListener="#{beanPersona.eliminarPersona()}"
+				update=":frmLstPeople:lstPeople" 
+				oncomplete ="PF('dialogEliminar').hide();" />
+			<p:commandButton value="No" onclick="PF('dialogEliminar').hide();"
+				icon="icon-cancel" />
+		</p:dialog>
+	</h:form>
+	
+                  
+    </h:body>
+</html>
