@@ -1,0 +1,75 @@
+.btnUsers{
+    margin-left: -15px !important; 
+    position: relative;
+    top: -7px;
+    
+}
+
+.content {  
+    
+    flex-grow: 1; 
+    padding-bottom: 100px; 
+    margin-left: 100px;  
+    color:#133457; 
+}  
+
+.formHeader
+{
+    position: relative; 
+    margin-left: 100px;
+    margin-right: 100px; 
+    height: 47px;
+}   
+
+.formFooter
+{
+    position: relative; 
+    margin-left: 100px;
+    margin-right: 100px; 
+    height: 47px;
+    top: -60px;
+}
+
+/*Separa los botones save de cancel*/
+.margin-left{ 
+    margin-left: 10px ; 
+    position: relative;
+    /*top: -50px; */
+} 
+
+.posiciona_botones{
+    margin-left: -90px ; 
+    position: relative;
+    top: -75px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

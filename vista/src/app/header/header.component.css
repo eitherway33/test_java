@@ -1,0 +1,21 @@
+.header-background{
+    background-color:#020b14;
+   /* background-color:#6699ff;*/
+   /*background-color:#003366;*/
+  
+  
+  
+  /* padding-top: 59px;*/ 
+  
+}  
+
+/*Icono de home*/
+.homeBtn{ 
+    margin-left: 600px; 
+    position: absolute;
+    top: -80px; 
+    background-color: #6699ff;
+	
+}   
+
+

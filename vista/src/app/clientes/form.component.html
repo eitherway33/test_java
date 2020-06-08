@@ -1,0 +1,102 @@
+
+
+<div class="page-wrapper"> 
+	
+	<div class="card-header formHeader" style="background-color: #336699; color:white ">
+	 
+		<div class="btnUsers"> 
+			<button class="btn  btn-primary " style="background-color:#336699" type="button" name="button" [routerLink]="['/clientes']">
+				<i class="fas fa-users"  ></i> Users
+			</button> 
+		</div> 
+	</div> 
+	   <br>
+        <div class="content "> 
+		  <div class="posForm" style="width: 900px; " >
+            <div class="form-row">  
+
+				<div class="col-md-4 mb-3 ">
+					<label for="validationCustom01">User name</label>
+					<input type="text" class="form-control form-control-lg" id="userName" placeholder="First name"  [(ngModel)]="cliente.userName" required>	    
+				</div>  
+
+
+				<div class="col-md-4 mb-3">
+					<label for="validationCustom02">Last name</label>
+					<input type="text" class="form-control form-control-lg" id="userLastName" [(ngModel)]="cliente.userLastName" name="userLastName" placeholder="Last name" value="" required>
+				</div> 
+				
+				<div class="col-md-4 mb-2">
+					<label for="validationCustomUsername">Mobile</label>
+					<div class="input-group">	
+						<input type="text" class="form-control form-control-lg" id="validationCustom02" [(ngModel)]="cliente.userPhone" name="userPhone" placeholder="Last name" value="" required>
+					<div class="invalid-feedback">
+						Please choose a username.
+					</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4 mb-3">
+					<label for="validationCustom03">Address</label>
+					<input type="text" class="form-control form-control-lg" id="validationCustom02" [(ngModel)]="cliente.userAdress" name="userAdress" placeholder="Address" value="" required>
+					<div class="invalid-feedback">
+					Please provide a valid city.
+					</div>
+				</div>
+				<div class="col-md-5 mb-3">
+					<label for="validationCustom04">Email</label>
+					<input type="text" class="form-control form-control-lg" id="userEmail" [(ngModel)]="cliente.userEmail" name="userEmail" placeholder="Email" value="" required>
+					<div class="invalid-feedback">
+					Please provide a valid state.
+					</div>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="validationCustom05">Birth day</label>
+					<input type="text" class="form-control form-control-lg" id="validationCustom05" [(ngModel)]="cliente.userDateBirth" name="userDateBirth" placeholder="Birth day" required>
+					<div class="invalid-feedback">
+					Please provide a valid emaill.
+					</div>
+				</div> 
+				
+				<div class="col-md-2 mb-3">
+					<label for="validationCustom05">Status</label>
+					<input type="text" class="form-control form-control-lg" id="validationCustom05" [(ngModel)]="cliente.userStatus" name="userStatus"placeholder="User status" required>
+					<div class="invalid-feedback">
+					Please provide a valid date.
+					</div>
+				</div> 
+				<div class="col-md-4 mb-3">
+					<label for="validationCustom05">Account</label>
+					<input type="text" class="form-control form-control-lg" id="validationCustom05" [(ngModel)]="cliente.userAccount" name="userAccount"placeholder="User account" required>
+					<div class="invalid-feedback">
+					Please provide a valid date.
+					</div>
+				</div> 
+				<div class="col-md-4 mb-3">
+					<label for="validationCustom05">Password</label>
+					<input type="password" class="form-control form-control-lg" id="validationCustom05" [(ngModel)]="cliente.userPassword" name="userPassword"placeholder="User Password" required>
+					<div class="invalid-feedback">
+					Please provide a valid date.
+					</div>
+				</div>  
+			</div> 
+			</div>  
+		</div>  
+	
+		<div class="form-row text-center posiciona_botones"> 
+			<div class="col-12">
+				<button class="btn btn-primary" (click)='create()' *ngIf="!cliente.userId else elseBlock"> <i class="fa fa-save"></i>Save</button>
+				<button class="btn btn-warning margin-left" routerLink="/clientes"> <i class="fas fa-window-close" style="color: brown; "></i>Cancel</button>
+				<ng-template #elseBlock>
+					<button class="btn btn-primary" role="button"(click)='update()'> <i class="fa fa-save"></i>Update</button>
+				</ng-template>
+			</div> 
+		</div> 
+		<div class="card-footer formFooter " style="background-color:#336699; ; margin-left: 100px;" > </div>    	
+</div>
+
+  
+
+
+
+

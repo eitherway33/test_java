@@ -1,0 +1,63 @@
+    <form>   
+       <div class="card-header clientes-background2 text-white"  >
+                <div class="btnd">
+                    <button class="btn  btn-primary btnAddUser"  type="button" name="button" [routerLink]="['/clientes/form']">
+                        <i class="fas fa-user-plus" ></i> Add user
+                    </button>
+                </div> 
+                <div class="btnu">
+                    <button class="btn  btn-primary btnSignOut"  type="button" name="button" [routerLink]="['/login']">
+                        <i class="fas fa-sign-out-alt" ></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table  table-bordered  table-striped table-sm row-border hover nowrap sty" datatable [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger" style="color: blue; font-size: medium; width: 100%;" >
+                    <thead>
+                        <tr>
+                                <th>Id</th>
+                                <th>User name</th>
+                                <th>Last name</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Email</th> 
+                                <th>Birth day</th>
+                                <th>Status</th>
+                                <th>Account</th>
+                                <th>Password</th> 
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let group of user$">
+                        <td>{{group.userId}}</td>
+                        <td>{{group.userName}}</td>
+                        <td>{{group.userLastName}}</td>
+                        <td>{{group.userPhone}}</td>
+                        <td>{{group.userAdress}}</td>  
+                        <td>{{group.userEmail}}</td>
+                        <td>{{group.userDateBirth}}</td>
+                        <td>{{group.userStatus}}</td>
+                        <td>{{group.userAccount}}</td>
+                        <td>{{group.userPassword}}</td>
+                       
+                        <!--<button type="button" name="editar" [routerLink]="['/clientes/form', .id]" class="btn btn-primary">editar</button> -->
+                        <td>
+                            <button class="btn btn-primary editButon" [routerLink]="['/clientes/form', group.userId]"> <i class="fas fa-edit editIcon " ></i></button>
+                            
+                        </td>
+                                
+                        <td>
+                                    <!--<button type="button" name="eliminar" (click)='delete(cliente)' class="btn btn-danger">eliminar</button>-->
+                            <button class="btn btn-danger deleteButon" (click)='delete(group)'><i class="far fa-trash-alt deleteIcon" ></i></button>
+                        </td> 
+                                    
+                    </tr>
+                    </tbody>
+                </table> 
+        </div> 
+    </form>
